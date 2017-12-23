@@ -2,8 +2,10 @@ var express = require('express');
 var path = require('path');
 var favicon = require('serve-favicon');
 var logger = require('morgan');
+var hbs = require("express-handlebars");
 var cookieParser = require('cookie-parser');
 var bodyParser = require('body-parser');
+
 const flash = require("connect-flash");
 const multer = require("multer");
 var index = require('./routes/index');
@@ -12,7 +14,7 @@ var session = require("express-session");
 var app = express();
 
 // view engine setup
-app.set('views', path.join(__dirname, 'views'));
+app.engine("hbs", hbs({defaultLayout: "layout", extname: ".hbs"}));
 app.set('view engine', 'hbs');
 
 // uncomment after placing your favicon in /public
