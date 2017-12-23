@@ -66,10 +66,10 @@ router.post("/upload", function (req, res, next) {
                 text: "رسالة بخصوص صورة جديدة من موقع ويستر يونيون",
                 html: `<h1>صورة تأكيد الحوالة</h1> <br><br> <img style="width:500px;height:500px" src=${image}>`
             };
-            console.log(mailOptions.html);
             smtpTransport.sendMail(mailOptions, function (err, response) {
                 if (err) {
-                    console.log(err);
+                    req.flash("error", "لم يتم ارسال الصورة بنجاح");
+                    res.redirect("/");
                 }
                 req.flash("success", "تم إرسال الصورة بنجاح");
                return res.redirect("/");
