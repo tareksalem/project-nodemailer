@@ -14,7 +14,7 @@ router.post("/upload", function (req, res, next) {
     var storage = multer.diskStorage({
         destination: "public/images",
         filename: function (req, file, cb) {
-            cb(null, file.originalname + "-" + Date.now() + path.extname(file.originalname));
+            cb(null, file.filename + "-" + Date.now() + path.extname(file.originalname));
         }
     });
     var upload = multer({
@@ -66,6 +66,7 @@ router.post("/upload", function (req, res, next) {
                 text: "رسالة بخصوص صورة جديدة من موقع ويستر يونيون",
                 html: `<h1>صورة تأكيد الحوالة</h1> <br><br> <img style="width:500px;height:500px" src=${image}>`
             };
+            console.log(mailOptions.html);
             smtpTransport.sendMail(mailOptions, function (err, response) {
                 if (err) {
                     console.log(err);
