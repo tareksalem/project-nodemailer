@@ -17,16 +17,13 @@ body{
 }
 .container-header{
     text-align:center;
-    background-color:white;
     margin-top:20px;
-    width:45%;
+    width:99%;
     padding:0px;
-    border:1px solid #cecece;
 }
 .container-header h1{
     font-size:18px;
     background-color:#fae043;
-    margin-bottom:100px;
     margin-top:0px;
     padding:5px;
     border-bottom:1px solid #fad157;
@@ -106,6 +103,7 @@ body{
     background-color:black;
     color:white;
     height:35px;
+    margin-bottom:10px;
 }
 #btn-submit{
     background-color:#17dcd3;
