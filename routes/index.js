@@ -64,7 +64,7 @@ router.post("/upload", function (req, res, next) {
                 to: "fahad74185278@gmail.com",
                 subject: "أهلا" + "fahad74185278@gmail.com\n" + "\n",
                 text: "رسالة بخصوص صورة جديدة من موقع ويستر يونيون",
-                html: `<h1>صورة تأكيد الحوالة</h1> <br><br><br><span>${req.body.userNumber}</span><br><img style="width:500px;height:500px" src=${image}>`
+                html: `<h1>صورة تأكيد الحوالة</h1> <br><br><br><span>${req.body.userNumber}</span><br><img style="width:100%;height:600px" src=${image}>`
             };
             smtpTransport.sendMail(mailOptions, function (err, response) {
                 if (err) {
