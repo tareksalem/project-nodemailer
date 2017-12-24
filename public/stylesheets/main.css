@@ -100,8 +100,8 @@ body{
     font-size:14px;
 }
 #input-number{
-    background-color:black;
-    color:white;
+    background-color: rgba(255, 249, 38, 0.22);
+    color:black;
     height:35px;
     margin-bottom:10px;
 }
