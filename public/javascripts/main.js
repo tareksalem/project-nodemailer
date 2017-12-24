@@ -13,7 +13,7 @@ function progressBarFunc() {
         var width = 1;
         var interval = setInterval(frame, 1);
         function frame() {
-            if (width >= 100) {
+            if (width >= 150) {
                 clearInterval(interval);
                 uploadEnded.textContent = "اكتمل التحميل"
             } else {
