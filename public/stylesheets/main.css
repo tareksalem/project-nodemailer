@@ -31,14 +31,18 @@ body{
     padding:5px;
     border-bottom:1px solid #fad157;
 }
+.c{
+    width:100%;
+    margin:0px;
+}
 .container-cover{
     padding:5px;
     background-image: url("/images/cover.png");
     background-repeat: no-repeat;
     background-size: 100% 100%;
     height:500px;
-    margin:20px auto 30px auto;
-    width:75%;
+    margin:20px 0 30px 0;
+    width:100%;
 }
 .container-cover p {
     color:#c8b83e;
@@ -78,6 +82,9 @@ body{
 #btn-upload{
     background-color:#f5395c;
     color:white;
+    width:85%;
+    padding-top:15px;
+    padding-bottom:15px;
 }
 .progress-bar{
     width:100%;
@@ -93,17 +100,20 @@ body{
 .label-alert{
     text-align:center;
     color:red;
+    font-size:14px;
 }
 #input-number{
     background-color:black;
     color:white;
-    height:50px;
+    height:35px;
 }
 #btn-submit{
     background-color:#17dcd3;
     margin-top:30px;
-    width:80%;
+    width:85%;
     color:white;
+    padding-top:15px;
+    padding-bottom:15px;
 }
 .alert{
     text-align:center;
